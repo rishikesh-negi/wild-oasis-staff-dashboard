@@ -12,9 +12,16 @@ import { useMoveBack } from "../../hooks/useMoveBack";
 import { useBooking } from "./useBooking";
 import Spinner from "../../ui/Spinner";
 import { useNavigate } from "react-router-dom";
-import { HiArrowDownOnSquare, HiArrowUpOnSquare } from "react-icons/hi2";
+import {
+  HiArrowDownOnSquare,
+  HiArrowUpOnSquare,
+  HiTrash,
+} from "react-icons/hi2";
 import { useCheckout } from "../../hooks/useCheckout";
 import Menus from "../../ui/Menus";
+import Modal from "../../ui/Modal";
+import { useDeleteBooking } from "../../hooks/useDeleteBookings";
+import ConfirmDelete from "../../ui/ConfirmDelete";
 
 const HeadingGroup = styled.div`
   display: flex;
@@ -25,6 +32,8 @@ const HeadingGroup = styled.div`
 function BookingDetail() {
   const { booking, isLoading } = useBooking();
   const { checkout, isCheckingOut } = useCheckout();
+  const { deleteBooking, isDeletingBooking } = useDeleteBooking();
+
   const moveBack = useMoveBack();
   const navigate = useNavigate();
 
@@ -39,7 +48,7 @@ function BookingDetail() {
   };
 
   return (
-    <>
+    <Modal>
       <Row type="horizontal">
         <HeadingGroup>
           <Heading as="h1">Booking #{bookingId}</Heading>
@@ -66,11 +75,33 @@ function BookingDetail() {
           </Button>
         )}
 
+        <Modal.Open opens="confirm-delete-booking">
+          <Button
+            variation="danger"
+            icon={<HiTrash />}
+            disabled={isDeletingBooking}
+            onClick={() => deleteBooking(bookingId)}>
+            Delete booking
+          </Button>
+        </Modal.Open>
+
         <Button variation="secondary" onClick={moveBack}>
           Back
         </Button>
       </ButtonGroup>
-    </>
+
+      <Modal.Window name="confirm-delete-booking">
+        <ConfirmDelete
+          resourceName={`booking #${bookingId}`}
+          onConfirm={() =>
+            deleteBooking(bookingId, {
+              onSuccess: () => navigate(-1),
+            })
+          }
+          disabled={isDeletingBooking}
+        />
+      </Modal.Window>
+    </Modal>
   );
 }
 
