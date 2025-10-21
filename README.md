@@ -9,6 +9,9 @@ Supabase for quick backend API creation. Employs React Query for API
 integration, remote state management, and caching; React Router for routing; and
 CSS Styled Components for styling.
 
+The project is currently in development and not in a state to be tested by other
+users. I will update the README.md once it is ready for deployment.
+
 ### Create your own backend:
 
 ```
