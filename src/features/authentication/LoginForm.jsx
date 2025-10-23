@@ -15,7 +15,15 @@ function LoginForm() {
     e.preventDefault();
     if (!email || !password) return;
 
-    login({ email, password });
+    login(
+      { email, password },
+      {
+        onSettled() {
+          setEmail("");
+          setPassword("");
+        },
+      }
+    );
   }
 
   return (
@@ -42,6 +50,7 @@ function LoginForm() {
           onChange={(e) => setPassword(e.target.value)}
         />
       </FormRowVertical>
+
       <FormRowVertical>
         <Button size="large" disabled={isLoggingIn}>
           {isLoggingIn ? <SpinnerMini /> : "Login"}
