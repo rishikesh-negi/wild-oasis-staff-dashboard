@@ -10,7 +10,7 @@ export function useUpdateUser() {
     onSuccess() {
       toast.success("Account successfully updated!");
       // Manually updating the cache if query invalidation isn't working for some reason (The user object should be received as argument by the onSuccess handler):
-      // queryClient.setQueryData("user", user);
+      // queryClient.setQueryData(["user"], user);
 
       queryClient.invalidateQueries({ queryKey: ["user"] });
     },
