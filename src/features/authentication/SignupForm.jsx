@@ -86,8 +86,12 @@ function SignupForm() {
       </FormRow>
 
       <FormRow>
-        {/* type is an HTML attribute! */}
-        <Button variation="secondary" type="reset" disabled={isSigningUp}>
+        {/* type is an HTML attribute, not a prop! The following "Cancel" button needs React Hook Form's 'reset' function in the onClick handler, despite having its type attribute set to reset, because with just the 'type="reset"' attribute, the form errors will not be reset even if the input fields are reset: */}
+        <Button
+          variation="secondary"
+          type="reset"
+          disabled={isSigningUp}
+          onClick={reset}>
           Cancel
         </Button>
         <Button disabled={isSigningUp}>Create new user</Button>
