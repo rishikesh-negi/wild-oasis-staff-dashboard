@@ -55,8 +55,6 @@ function CabinRow({ cabin }) {
   const { isDeleting, deleteCabin } = useDeleteCabin();
   const { createOrEditCabin, isBusy } = useCreateOrEditCabin();
 
-  if (isBusy) return <Spinner />;
-
   const {
     id: cabinId,
     name,
@@ -96,16 +94,23 @@ function CabinRow({ cabin }) {
             <Menus.Toggle id={cabinId} />
 
             <Menus.List id={cabinId}>
-              <Menus.Button icon={<HiSquare2Stack />} onClick={handleDuplicate}>
+              <Menus.Button
+                icon={<HiSquare2Stack />}
+                onClick={handleDuplicate}
+                disabled={isBusy}>
                 Duplicate
               </Menus.Button>
 
               <Modal.Open opens="edit-cabin">
-                <Menus.Button icon={<HiPencil />}>Edit</Menus.Button>
+                <Menus.Button icon={<HiPencil />} disabled={isBusy}>
+                  Edit
+                </Menus.Button>
               </Modal.Open>
 
               <Modal.Open opens="confirm-delete">
-                <Menus.Button icon={<HiTrash />}>Delete</Menus.Button>
+                <Menus.Button icon={<HiTrash />} disabled={isBusy}>
+                  Delete
+                </Menus.Button>
               </Modal.Open>
             </Menus.List>
 
