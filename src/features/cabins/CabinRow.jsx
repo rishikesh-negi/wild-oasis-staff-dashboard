@@ -10,6 +10,7 @@ import Modal from "../../ui/Modal";
 import ConfirmDelete from "../../ui/ConfirmDelete";
 import Table from "../../ui/Table";
 import Menus from "../../ui/Menus";
+import Spinner from "../../ui/Spinner";
 
 // const TableRow = styled.div`
 //   display: grid;
@@ -53,6 +54,8 @@ const Discount = styled.div`
 function CabinRow({ cabin }) {
   const { isDeleting, deleteCabin } = useDeleteCabin();
   const { createOrEditCabin, isBusy } = useCreateOrEditCabin();
+
+  if (isBusy) return <Spinner />;
 
   const {
     id: cabinId,
