@@ -71,7 +71,7 @@ function App() {
               duration: 5000,
               style: {
                 backgroundColor: "var(--color-red-100)",
-                color: "var(--color-grey-600)",
+                color: "#444",
               },
             },
             style: {
