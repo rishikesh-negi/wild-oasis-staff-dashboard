@@ -13,11 +13,21 @@ const LoginLayout = styled.main`
   background-color: var(--color-grey-50);
 `;
 
+const TestLoginInstructions = styled.p`
+  font-size: 1.4rem;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+`;
+
 function Login() {
   return (
     <LoginLayout>
       <Logo />
       <Heading as="h4">Log in to your account</Heading>
+      <TestLoginInstructions>
+        (Use <code>test@example.com</code> and <code>Hello@123</code> as the
+        username and password for log in, to explore the app)
+      </TestLoginInstructions>
       <LoginForm />
     </LoginLayout>
   );
