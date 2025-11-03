@@ -26,7 +26,7 @@ function Login() {
       <Heading as="h4">Log in to your account</Heading>
       <TestLoginInstructions>
         (Use <code>test@example.com</code> and <code>Hello@123</code> as the
-        username and password for log in, to explore the app)
+        username and password to log in and explore the app)
       </TestLoginInstructions>
       <LoginForm />
     </LoginLayout>
